@@ -20,10 +20,11 @@ const orderByPriceLowToHigh = (): Room[] => {
 
 const roomsToCsv = (): void => {
     const orderedRooms: Room[] = orderByPriceLowToHigh();
-    let textToWrite = Object.keys(orderedRooms[0]).join(',');
+    let textToWrite: string = Object.keys(orderedRooms[0]).join(';');
     textToWrite += '\n';
+    // id,foto,type,number,description,offer,price,cancellation,amenities,discount,status
     orderedRooms.forEach(room => {
-        textToWrite += `"${room.id}", "${room.amenities.toString()}"\n`; 
+        textToWrite += `"${room.id}"; "${room.foto}"; "${room.type}"; "${room.number}"; "${room.description}"; "${room.offer}"; "${room.price}"; "${room.cancellation}"; "${room.amenities.join(',').toString()}"; "${room.discount}"; "${room.status}";\n`; 
     })
     fs.writeFileSync('./rooms.csv', textToWrite);
 }
