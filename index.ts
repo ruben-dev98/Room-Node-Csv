@@ -20,7 +20,7 @@ const orderByPriceLowToHigh = (): Room[] => {
 
 const roomsToCsv = (): void => {
     const orderedRooms: Room[] = orderByPriceLowToHigh();
-    let textToWrite: string = Object.keys(orderedRooms[0]).join(';');
+    let textToWrite: string = Object.keys(orderedRooms[0]).map(header => header.toUpperCase()).join(';');
     textToWrite += '\n';
     // id,foto,type,number,description,offer,price,cancellation,amenities,discount,status
     orderedRooms.forEach(room => {
